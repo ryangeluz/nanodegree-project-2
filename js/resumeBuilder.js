@@ -144,9 +144,10 @@ projects.display = function() {
 projects.display();	
 
 
-education.schools.display = function() {
+education.display = function() {
+	$("#education").append(HTMLschoolStart);
 	for (school in education.schools) {
-		$("#education").append(HTMLschoolStart);
+		
 		var formattedName = HTMLschoolName.replace("%data%", education.schools[school].name);
 		$(".education-entry:last").append(formattedName);
 		var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
@@ -158,13 +159,8 @@ education.schools.display = function() {
 		var formattedLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
 		$(".education-entry:last").append(formattedLocation);
 	};
-};
-
-education.schools.display();
-
-
-education.onlineCourses.display = function() {
 	$(".education-entry:first").append(HTMLonlineClasses);
+
 	for (course in education.onlineCourses) {
 		var formattedTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title);
 		$(".education-entry:last").append(formattedTitle);
@@ -175,11 +171,19 @@ education.onlineCourses.display = function() {
 		var formattedURL = HTMLonlineURL.replace("%data%", education.onlineCourses[course].url);
 		$(".education-entry:last").append(formattedURL);
 	};
-
-
+	
 };
 
-education.onlineCourses.display();
+education.display();
+
+
+//education.onlineCourses.display = function() {
+	
+
+
+//};
+
+//education.onlineCourses.display();
 
 
 $("mapDiv").append(googleMap);
