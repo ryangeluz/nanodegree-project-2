@@ -104,11 +104,18 @@ bio.display = function() {
     var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
     $("#header").append(formattedWelcome);
 
+    //skills
     $("#header").append(HTMLskillsStart);
 	for (var i = 0; i < bio.skills.length; i+=1){
 		var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
 		$("#skills").append(formattedSkill);
 	}
+	//footer
+    $("#footerContacts").append(formattedMobile);
+    $("#footerContacts").append(formattedEmail);
+    $("#footerContacts").append(formattedGitHub);
+    $("#footerContacts").append(formattedTwitter);
+    $("#footerContacts").append(formattedLocation);
 };
 
 work.display = function(){
@@ -158,7 +165,7 @@ education.display = function() {
 	};
 	$(".education-entry:first").append(HTMLonlineClasses);
 
-	for (course in education.onlineCourses) {
+	for (var course in education.onlineCourses) {
 		var formattedTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title);
 		$(".education-entry:last").append(formattedTitle);
 		var formattedSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[course].school);
@@ -174,20 +181,6 @@ var displayMap = function () {
 	$("#mapDiv").append(googleMap);
 }
 
-var displayFooter = function(){
-$("#footerContacts").append(formattedMobile);
-    var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-    $("#footerContacts").append(formattedMobile);
-    var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-    $("#footerContacts").append(formattedEmail);
-    var formattedGitHub = HTMLgithub.replace("%data%", bio.contacts.github);
-    $("#footerContacts").append(formattedGitHub);
-    var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-    $("#footerContacts").append(formattedTwitter);
-    var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-    $("#footerContacts").append(formattedLocation);
-};
-
 // Here we call the display functions so that they appear on the page.
 
 bio.display();
@@ -195,4 +188,4 @@ work.display();
 projects.display();	
 education.display();
 displayMap();
-displayFooter();
+
