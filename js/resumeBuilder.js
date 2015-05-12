@@ -135,7 +135,7 @@ work.display = function(){
 };
 
 projects.display = function() {
-    for (project in projects.projects) {
+    for (var project in projects.projects) {
 		$("#projects").append(HTMLprojectStart);
 		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
 		$(".project-entry:last").append(formattedTitle);
@@ -150,7 +150,7 @@ projects.display = function() {
 
 education.display = function() {
 	$("#education").append(HTMLschoolStart);
-	for (school in education.schools) {
+	for (var school in education.schools) {
 		
 		var formattedName = HTMLschoolName.replace("%data%", education.schools[school].name);
 		$(".education-entry:last").append(formattedName);
