@@ -1,3 +1,7 @@
+// These are the bio, work, projects, and education objects.
+// When updating resume, this is the only section that needs
+// to be adjusted.
+
 var bio = {
     "name": "Ryan",
     "role": "Front-End Ninja",
@@ -75,6 +79,8 @@ var projects = {
 	}]
 };
 
+// This section contains function to display the objects,
+// as well as the map and footer..
 
 bio.display = function() {
     var formattedName = HTMLheaderName.replace("%data%", "Ryan Geluz");
@@ -97,16 +103,13 @@ bio.display = function() {
     $("#header").append(formattedBioPic);
     var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
     $("#header").append(formattedWelcome);
+
+    $("#header").append(HTMLskillsStart);
+	for (var i = 0; i < bio.skills.length; i+=1){
+		var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
+		$("#skills").append(formattedSkill);
+	}
 };
-
-bio.display();
-
-$("#header").append(HTMLskillsStart);
-for (var i = 0; i < bio.skills.length; i+=1){
-	var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
-	$("#skills").append(formattedSkill);
-}
-
 
 work.display = function(){
     for (var job in work.jobs) {
@@ -124,9 +127,6 @@ work.display = function(){
     };
 };
 
-work.display();
-
-
 projects.display = function() {
     for (project in projects.projects) {
 		$("#projects").append(HTMLprojectStart);
@@ -140,9 +140,6 @@ projects.display = function() {
 		$(".project-entry:last").append(formattedImage);
 	};
 };
-
-projects.display();	
-
 
 education.display = function() {
 	$("#education").append(HTMLschoolStart);
@@ -170,20 +167,32 @@ education.display = function() {
 		$(".education-entry:last").append(formattedDates);
 		var formattedURL = HTMLonlineURL.replace("%data%", education.onlineCourses[course].url);
 		$(".education-entry:last").append(formattedURL);
-	};
-	
+	};	
 };
 
+var displayMap = function () {
+	$("#mapDiv").append(googleMap);
+}
+
+var displayFooter = function(){
+$("#footerContacts").append(formattedMobile);
+    var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+    $("#footerContacts").append(formattedMobile);
+    var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+    $("#footerContacts").append(formattedEmail);
+    var formattedGitHub = HTMLgithub.replace("%data%", bio.contacts.github);
+    $("#footerContacts").append(formattedGitHub);
+    var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+    $("#footerContacts").append(formattedTwitter);
+    var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+    $("#footerContacts").append(formattedLocation);
+};
+
+// Here we call the display functions so that they appear on the page.
+
+bio.display();
+work.display();
+projects.display();	
 education.display();
-
-
-//education.onlineCourses.display = function() {
-	
-
-
-//};
-
-//education.onlineCourses.display();
-
-
-$("mapDiv").append(googleMap);
+displayMap();
+displayFooter();
